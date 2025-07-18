@@ -1,0 +1,165 @@
+body {
+    font-family: 'Poppins', sans-serif;
+}
+
+.header {
+    background: url('../images/program-bg.jpg') no-repeat center center/cover;
+    background-color: #f4f4f4;
+    height: 60vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: #fff;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    animation: fadeIn 1s ease-in;
+}
+
+.section {
+    padding: 50px 20px;
+    text-align: center;
+    background: linear-gradient(135deg, #f4f4f4, #fff);
+}
+
+.section h2 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #ff6b6b;
+    margin-bottom: 40px; /* Jarak lebih besar untuk mencegah tabrakan */
+}
+
+.program-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding-top: 20px; /* Jarak dari h2 */
+}
+
+.program-card {
+    perspective: 1000px;
+    position: relative;
+    min-height: 350px; /* Tinggi dinamis untuk muat konten */
+    transition: z-index 0.3s ease, transform 0.3s ease;
+}
+
+.program-card.active {
+    z-index: 10; /* Kartu di atas saat flip */
+    transform: scale(1.05); /* Sedikit membesar untuk menonjol */
+}
+
+.card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.6s;
+    transform-style: preserve-3d;
+}
+
+.program-card.active .card-inner {
+    transform: rotateY(180deg);
+}
+
+.card-front, .card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.card-front {
+    background: #4ecdc4;
+    color: #fff;
+}
+
+.card-back {
+    background: #fff;
+    color: #333;
+    transform: rotateY(180deg);
+    text-align: left;
+    overflow-y: auto; /* Scroll jika konten panjang */
+    max-height: 350px; /* Batasi tinggi untuk mencegah tabrakan */
+}
+
+.card-front h3 {
+    font-size: 1.8rem;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.card-desc {
+    font-size: 1.1rem;
+    text-align: center;
+    max-width: 80%;
+}
+
+.card-back h4 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #ff6b6b;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.card-back ul {
+    list-style: none;
+    font-size: 1.1rem;
+    line-height: 1.8;
+    text-align: left;
+    max-width: 90%;
+}
+
+.card-back ul li {
+    margin-bottom: 10px;
+}
+
+.section.animate .program-card {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.5s ease-in, transform 0.5s ease-in;
+}
+
+.section.animate .program-card:nth-child(1) { transition-delay: 0.1s; }
+.section.animate .program-card:nth-child(2) { transition-delay: 0.2s; }
+.section.animate .program-card:nth-child(3) { transition-delay: 0.3s; }
+
+.section.animate .program-card {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+@media (max-width: 768px) {
+    .header {
+        background: url('../images/program-bg-mobile.jpg') no-repeat center center/cover;
+        height: 50vh;
+    }
+    .section h2 {
+        font-size: 2rem;
+    }
+    .card-front h3 {
+        font-size: 1.5rem;
+    }
+    .card-desc {
+        font-size: 1rem;
+    }
+    .card-back h4 {
+        font-size: 1.3rem;
+    }
+    .card-back ul {
+        font-size: 1rem;
+    }
+    .program-card {
+        min-height: 300px; /* Lebih kecil di mobile */
+    }
+    .card-back {
+        max-height: 300px;
+    }
+}

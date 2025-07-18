@@ -1,0 +1,161 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,400;0,700;1,400;1,700&family=Noto+Serif+CJK+JP&family=Noto+Serif+CJK+SC&family=Noto+Serif+KR&family=Noto+Serif+Thai&family=Noto+Serif+Bengali&family=Amiri&display=swap');
+
+body {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: linear-gradient(135deg, #ff6b6b, #4ecdc4);
+    overflow: hidden;
+}
+
+.welcome-container {
+    text-align: center;
+}
+
+.welcome-text {
+    font-size: 4rem;
+    color: #fff;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+    opacity: 0;
+}
+
+.welcome-text.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.welcome-text.hide {
+    opacity: 0;
+    transform: translateY(-20px);
+}
+
+/* Font spesifik untuk setiap bahasa */
+.welcome-text.english, .welcome-text.spanish, .welcome-text.french, 
+.welcome-text.german, .welcome-text.indonesian, .welcome-text.italian,
+.welcome-text.portuguese, .welcome-text.filipino, .welcome-text.vietnamese {
+    font-family: 'Noto Serif', serif;
+}
+
+.welcome-text.chinese {
+    font-family: 'Noto Serif CJK SC', serif;
+}
+
+.welcome-text.japanese {
+    font-family: 'Noto Serif CJK JP', serif;
+}
+
+.welcome-text.korean {
+    font-family: 'Noto Serif KR', serif;
+}
+
+.welcome-text.thai {
+    font-family: 'Noto Serif Thai', serif;
+}
+
+.welcome-text.arabic, .welcome-text.persian {
+    font-family: 'Amiri', serif;
+}
+
+.welcome-text.russian {
+    font-family: 'Noto Serif', serif;
+}
+
+.welcome-text.kazakh {
+    font-family: 'Noto Serif', serif;
+}
+
+.popup {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.5);
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    animation: fadeIn 0.5s ease-in;
+}
+
+.popup-content {
+    background: transparent; /* Menghilangkan latar persegi */
+    padding: 0; /* Menghilangkan padding */
+    text-align: center;
+    max-width: 400px;
+    width: 90%;
+    animation: slideIn 0.5s ease-in;
+}
+
+.popup-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 60px;
+    height: 60px;
+    background: #ff6b6b;
+    color: #000000;
+    text-decoration: none;
+    border-radius: 50%;
+    font-size: 1.5rem;
+    transition: transform 0.3s ease-in-out;
+    position: relative;
+    z-index: 1001;
+    margin: 20px auto;
+}
+
+.popup-button .button-text {
+    transition: opacity 0.5s ease-in-out; /* Transisi untuk teks memudar */
+}
+
+.popup-button:hover {
+    transform: scale(1.2);
+}
+
+.popup-button.expand {
+    animation: expandCircle 1s ease-in-out forwards;
+}
+
+.popup-button.expand .button-text {
+    opacity: 0; /* Teks memudar saat animasi membesar */
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideIn {
+    from { transform: translateY(-50px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes expandCircle {
+    0% {
+        transform: scale(1);
+        background: #ff6b6b;
+    }
+    100% {
+        transform: scale(50);
+        background: #ffffff;
+        border-radius: 50%;
+    }
+}
+
+@media (max-width: 768px) {
+    .welcome-text {
+        font-size: 2.5rem;
+    }
+    .popup-content {
+        width: 80%;
+    }
+    .popup-button {
+        width: 50px;
+        height: 50px;
+        font-size: 1.2rem;
+    }
+}
